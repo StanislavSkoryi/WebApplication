@@ -1,0 +1,33 @@
+﻿@model WebApplication.Data.Entities.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupId" class="control-label">Group</label>
+                <div> @Html.DropDownList("GroupId", (ViewBag.GroupsList as IEnumerable<SelectListItem>), new { @class = "form-control" }) </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <a asp-action="RedirectToGroupsList" asp-route-groupId="@Context.Request.Query["groupId"]">Back to Groups</a>
+    </div>
+</div>

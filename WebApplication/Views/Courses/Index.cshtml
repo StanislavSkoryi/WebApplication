@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication.Data.Entities.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<h1>Courses</h1>
+<a asp-action="Create">Create Course</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Name)
+            </td>
+            <td>
+                <a asp-controller="Groups" asp-action="Index"  asp-route-courseId="@item.Id">Open</a> |
+                <a asp-action="Edit" asp-route-courseId="@item.Id">Edit name</a> |
+                <a asp-controller="Groups" asp-action="Create" asp-route-courseId="@item.Id">Add Group</a> |
+                <a asp-action="Delete" asp-route-courseId="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

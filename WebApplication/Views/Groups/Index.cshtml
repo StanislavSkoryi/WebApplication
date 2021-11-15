@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication.Data.Entities.Group>
+
+@{
+    ViewData["Title"] = "Groups";
+}
+
+<h1>Groups</h1>
+<h4>@ViewBag.CourseName</h4>
+<a asp-controller="Courses" asp-action="Index">Back to Courses</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Name)
+                </td>
+                <td>
+                    <a asp-controller="Students" asp-action="Index" asp-route-groupId="@item.Id">Open</a> |
+                    <a asp-action="Edit" asp-route-groupId="@item.Id">Edit name</a> |
+                    <a asp-action="Delete" asp-route-groupId="@item.Id">Delete</a> |
+                    <a asp-controller="Students" asp-action="Create" asp-route-groupId="@item.Id">Add Student</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
